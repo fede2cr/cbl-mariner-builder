@@ -10,7 +10,7 @@ on:
 
 jobs:
   ansible-recipe-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2.2.0
       with:
@@ -21,7 +21,9 @@ jobs:
       run: |
         sudo pip3 install --upgrade pip
         pip3 install ansible
-    - name: Ansible check
+    - name: Ansible syntax check
       run: |
         ansible-playbook --syntax-check cbl-mariner_builder.yml
-
+    - name: Running Ansible builder
+      run: |
+        ansible-playbook cbl-mariner_builder.yml
