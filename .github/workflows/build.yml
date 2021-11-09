@@ -1,0 +1,27 @@
+name: Build CI
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  check_suite:
+    type: [rerequested]
+
+jobs:
+  ansible-recipe-test:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2.2.0
+      with:
+        fetch-depth: 0
+    - name: Install ansible pre-req
+      run: sudo apt-get install -yq python3-setuptools
+    - name: Install ansible
+      run: |
+        sudo pip3 install --upgrade pip
+        pip3 install ansible
+    - name: Ansible check
+      run: |
+        ansible-playbook --syntax-check cbl-mariner_builder.yml
+

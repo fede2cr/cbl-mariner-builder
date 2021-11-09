@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Adding Golang-backports
+      ansible.builtin.apt_repository:
+        repo: ppa:longsleep/golang-backports
+      become: yes
+    - name: Updates packages
+      apt:
+        update_cache: yes
+      become: yes
+    - name: Upgrades packages
+      apt:
+        upgrade: dist
+      become: yes
+    - name: Installs pre-req packages
+      apt:
+        pkg:
+          - make
+          - tar
+          - wget
+          - curl
+          - rpm
+          - qemu-utils
+          - golang-1.16-go
+          - genisoimage
+          - python-minimal
+          - bison
+          - gawk
+          - parted
+          - pigz
+        state: latest
+      become: yes
