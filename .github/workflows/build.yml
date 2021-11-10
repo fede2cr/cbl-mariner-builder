@@ -28,5 +28,15 @@ jobs:
     - name: Running Ansible builder
       run: |
         ansible-playbook cbl-mariner_builder.yml
-    - name: Checking submodule code
-      run: tree
+    - name: Checking correct CBL-Mariner version
+      run: |
+        cd CBL-Mariner
+        git checkout 1.0-stable
+    - name: Start building process
+      run:
+        cd toolkit
+        sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=n CONFIG_FILE=./imageconfigs/core-efi.json
+        sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=n CONFIG_FILE=./imageconfigs/core-legacy.json
+        sudo make meta-user-data
+    - name: Checking output
+      run: tree out/images/
