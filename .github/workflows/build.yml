@@ -33,7 +33,7 @@ jobs:
         cd CBL-Mariner
         git checkout 1.0-stable
     - name: Start building process
-      run:
+      run: |
         cd toolkit
         sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=n CONFIG_FILE=./imageconfigs/core-efi.json
         sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=n CONFIG_FILE=./imageconfigs/core-legacy.json
