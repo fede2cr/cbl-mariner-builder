@@ -15,6 +15,7 @@ jobs:
     - uses: actions/checkout@v2.2.0
       with:
         fetch-depth: 0
+        submodules: true
     - name: Install ansible pre-req
       run: sudo apt-get install -yq python3-setuptools
     - name: Install ansible
@@ -27,3 +28,5 @@ jobs:
     - name: Running Ansible builder
       run: |
         ansible-playbook cbl-mariner_builder.yml
+    - name: Checking submodule code
+      run: tree

@@ -1,0 +1,3 @@
+[submodule "main/CBL-Mariner"]
+	path = main/CBL-Mariner
+	url = git@github.com:microsoft/CBL-Mariner.git
