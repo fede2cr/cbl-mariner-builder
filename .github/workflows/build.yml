@@ -36,6 +36,7 @@ jobs:
       run: |
         cd CBL-Mariner
         cd toolkit
+        export SOURCE_URL=https://cblmarinerstorage.blob.core.windows.net/sources/core
         sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=y CONFIG_FILE=./imageconfigs/core-efi.json
         sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=y CONFIG_FILE=./imageconfigs/core-legacy.json
         sudo make meta-user-data
